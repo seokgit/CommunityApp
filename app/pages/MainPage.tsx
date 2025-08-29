@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TouchableOpacity } from 'react-native';
 import Article from '../components/Article';
 import { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -16,13 +16,13 @@ function MainPage() {
         style={{ flex: 1 }}
         data={posts}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => 
-        <>
-        <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
+        renderItem={({ item }) =>         
+        <TouchableOpacity onPress={() => navigation.navigate("Detail")}>
+  <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
           <Article post={item}/>          
         </View>
-        <View style={{backgroundColor: 'gray', alignSelf: 'stretch', height: 1}}/>
-        </>
+        <View style={{backgroundColor: 'gray', alignSelf: 'stretch', height: 1}}/>            
+        </TouchableOpacity>                  
         }
         contentInsetAdjustmentBehavior="automatic"
       />    
