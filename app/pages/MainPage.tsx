@@ -17,8 +17,10 @@ function MainPage() {
         data={posts}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) =>         
-        <TouchableOpacity onPress={() => navigation.navigate("Detail")}>
-  <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
+        <TouchableOpacity onPress={() => navigation.navigate("Detail", {
+          post: item
+        })}>
+      <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
           <Article post={item}/>          
         </View>
         <View style={{backgroundColor: 'gray', alignSelf: 'stretch', height: 1}}/>            
