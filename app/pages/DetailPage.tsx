@@ -1,12 +1,64 @@
-import { View, Text, Button } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
+import ProfileCard from '../components/ProfileCard';
+import { useNavigation } from '@react-navigation/native';
 
-function DetailPage() {
-
+function DetailPage({ route }) {
+  const post = route.params.post
+  const navigation = useNavigation()
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>detail page</Text>
+    <View style={styles.container}>
+      {/* <Text>detail page</Text> */}
+     <ScrollView>
+       <View style={{paddingHorizontal: 16, paddingTop: 20}}>
+        <ProfileCard profileImageUrl={post.profileImageUrl} name={post.authorName} date={post.date} subject={post.subject}/>
+      <Text style={styles.titleText}>
+        {post.title}
+      </Text>
+
+      <Text style={styles.contentText}>
+        {post.content}
+      </Text>
+       </View>
+     </ScrollView>
+     <View style={styles.statsContainer}>      
+      <TouchableOpacity style={styles.comment} onPress={() => navigation.navigate("Comment")}> 
+        <Image source={require('../assets/message.png')} style={{width: 24, height: 24}}/>
+        <Text>140</Text>
+      </TouchableOpacity>
+     </View>
     </View>
   );
 }
 
 export default DetailPage;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: 'white'    
+  },
+  titleText: {
+    fontSize: 30,
+    fontWeight: '700',
+    paddingTop: 20
+  },
+  contentText: {
+    fontSize: 18,    
+    paddingTop: 10    
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    paddingTop: 20,
+    paddingBottom: 30,
+    paddingHorizontal: 30,
+    alignItems: 'center',
+    alignSelf: 'stretch',
+    gap: 20
+  },
+  comment: {
+     flexDirection: 'row',
+     alignItems: 'center',
+     gap: 4
+  }
+})

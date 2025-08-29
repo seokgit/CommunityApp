@@ -15,6 +15,7 @@ import DetailPage from './pages/DetailPage.tsx';
 import WritePage from './pages/WritePage.tsx';
 import SignInPage from './pages/SignInPage.tsx';
 import { useState } from 'react';
+import CommentPage from './pages/CommentPage.tsx';
 
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,10 @@ function App() {
   }}/>
             <Stack.Screen name="Detail" component={DetailPage} />
             <Stack.Screen name="Write" component={WritePage} />
+            <Stack.Screen name="Comment" component={CommentPage} options={{
+              presentation: 'modal',
+              headerShown: false
+            }} />
           </Stack.Navigator>
         ) : (
           <Stack.Navigator screenOptions={{ headerShown: false }}>
