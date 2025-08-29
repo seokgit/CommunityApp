@@ -20,15 +20,18 @@ import { useState } from 'react';
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <SafeAreaProvider>
       <NavigationContainer>
-
         {isLoggedIn ? (
           <Stack.Navigator>
-            <Stack.Screen name="Main" component={MainPage} />
+            <Stack.Screen name="Main" component={MainPage} options={{
+    title: 'Explore',
+    headerLargeTitle: true, 
+    headerShadowVisible: false,
+  }}/>
             <Stack.Screen name="Detail" component={DetailPage} />
             <Stack.Screen name="Write" component={WritePage} />
           </Stack.Navigator>

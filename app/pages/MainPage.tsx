@@ -1,24 +1,32 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Button } from 'react-native';
+import { View, FlatList } from 'react-native';
+import Article from '../components/Article';
+import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import postData from '../assets/post.json';
+import { Post } from '../types/post';
 
 function MainPage() {
   const navigation = useNavigation();
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Main Page</Text>
-      <Button
-        title='상세페이지로 이동'
-        onPress={() => {
-          navigation.navigate("Detail")
-        }}
-      />
-      <Button
-        title='글쓰기 페이지로 이동'
-        onPress={() => {
-          navigation.navigate("Write")
-        }}
-      />
-    </View>
+  const [posts, setPost] = useState<Post[]>(postData);  
+  
+  return (   
+    <SafeAreaView style={{ flex: 1 }}>
+      <FlatList
+        style={{ flex: 1 }}
+        data={posts}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => 
+        <>
+        <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
+          <Article post={item}/>          
+        </View>
+        <View style={{backgroundColor: 'gray', alignSelf: 'stretch', height: 1}}/>
+        </>
+        }
+        contentInsetAdjustmentBehavior="automatic"
+      />    
+      </SafeAreaView>    
   );
 }
 
