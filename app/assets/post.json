@@ -1,0 +1,92 @@
+[
+  {
+    "id": 0,
+    "title": "Lorem ipsum dolor sit amet",
+    "subject": "Consectetur adipiscing elit",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=1",
+    "authorName": "Alice",
+    "date": "2025-08-30"
+  },
+  {
+    "id": 1,
+    "title": "Sed do eiusmod tempor",
+    "subject": "Incididunt ut labore",
+    "content": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=2",
+    "authorName": "Bob",
+    "date": "2025-08-29"
+  },
+  {
+    "id": 2,
+    "title": "Ut enim ad minim veniam",
+    "subject": "Quis nostrud exercitation",
+    "content": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=3",
+    "authorName": "Charlie",
+    "date": "2025-08-28"
+  },
+  {
+    "id": 3,
+    "title": "Duis aute irure dolor",
+    "subject": "In reprehenderit in voluptate",
+    "content": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=4",
+    "authorName": "David",
+    "date": "2025-08-27"
+  },
+  {
+    "id": 4,
+    "title": "Excepteur sint occaecat",
+    "subject": "Cupidatat non proident",
+    "content": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=5",
+    "authorName": "Eva",
+    "date": "2025-08-26"
+  },
+  {
+    "id": 5,
+    "title": "Consectetur adipiscing elit",
+    "subject": "Sed do eiusmod",
+    "content": "Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=6",
+    "authorName": "Frank",
+    "date": "2025-08-25"
+  },
+  {
+    "id": 6,
+    "title": "Tempor incididunt ut labore",
+    "subject": "Dolore magna aliqua",
+    "content": "Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=7",
+    "authorName": "Grace",
+    "date": "2025-08-24"
+  },
+  {
+    "id": 7,
+    "title": "Minim veniam quis nostrud",
+    "subject": "Exercitation ullamco laboris",
+    "content": "Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=8",
+    "authorName": "Hank",
+    "date": "2025-08-23"
+  },
+  {
+    "id": 8,
+    "title": "Laboris nisi ut aliquip",
+    "subject": "Ex ea commodo consequat",
+    "content": "Laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=9",
+    "authorName": "Ivy",
+    "date": "2025-08-22"
+  },
+  {
+    "id": 9,
+    "title": "Cillum dolore eu fugiat",
+    "subject": "Nulla pariatur excepteur",
+    "content": "Cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    "profileImageUrl": "https://i.pravatar.cc/150?img=10",
+    "authorName": "Jack",
+    "date": "2025-08-21"
+  }
+]
