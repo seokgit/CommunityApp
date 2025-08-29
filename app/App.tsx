@@ -23,11 +23,15 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
-    <SafeAreaProvider style={{backgroundColor: 'black'}}>
+    <SafeAreaProvider>
       <NavigationContainer>
         {isLoggedIn ? (
           <Stack.Navigator>
-            <Stack.Screen name="Main" component={MainPage} />
+            <Stack.Screen name="Main" component={MainPage} options={{
+    title: 'Explore',
+    headerLargeTitle: true, 
+    headerShadowVisible: false,
+  }}/>
             <Stack.Screen name="Detail" component={DetailPage} />
             <Stack.Screen name="Write" component={WritePage} />
           </Stack.Navigator>

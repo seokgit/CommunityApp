@@ -1,13 +1,32 @@
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, Button } from 'react-native';
-import ProfileCard from '../components/ProfileCard';
+import { View, FlatList } from 'react-native';
+import Article from '../components/Article';
+import { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import postData from '../assets/post.json';
+import { Post } from '../types/post';
 
 function MainPage() {
   const navigation = useNavigation();
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 16}}>
-      <ProfileCard profileImageUrl='https://i.pinimg.com/originals/3f/a9/0e/3fa90e19628414e52d2d187094af10f8.jpg' name='Title' date='8/18/2021' subject='Subject'/>
-    </View>
+  const [posts, setPost] = useState<Post[]>(postData);  
+  
+  return (   
+    <SafeAreaView style={{ flex: 1 }}>
+      <FlatList
+        style={{ flex: 1 }}
+        data={posts}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => 
+        <>
+        <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
+          <Article post={item}/>          
+        </View>
+        <View style={{backgroundColor: 'gray', alignSelf: 'stretch', height: 1}}/>
+        </>
+        }
+        contentInsetAdjustmentBehavior="automatic"
+      />    
+      </SafeAreaView>    
   );
 }
 
