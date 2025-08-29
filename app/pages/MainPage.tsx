@@ -8,27 +8,27 @@ import { Post } from '../types/post';
 
 function MainPage() {
   const navigation = useNavigation();
-  const [posts, setPost] = useState<Post[]>(postData);  
-  
-  return (   
+  const [posts, setPost] = useState<Post[]>(postData);
+
+  return (
     <SafeAreaView style={{ flex: 1 }}>
       <FlatList
         style={{ flex: 1 }}
         data={posts}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) =>         
-        <TouchableOpacity onPress={() => navigation.navigate("Detail", {
-          post: item
-        })}>
-      <View style={{paddingVertical: 20, paddingHorizontal: 16}}>
-          <Article post={item}/>          
-        </View>
-        <View style={{backgroundColor: 'gray', alignSelf: 'stretch', height: 1}}/>            
-        </TouchableOpacity>                  
+        renderItem={({ item }) =>
+          <TouchableOpacity onPress={() => navigation.navigate("Detail", {
+            post: item
+          })}>
+            <View style={{ paddingVertical: 20, paddingHorizontal: 16 }}>
+              <Article post={item} />
+            </View>
+            <View style={{ backgroundColor: 'gray', alignSelf: 'stretch', height: 1 }} />
+          </TouchableOpacity>
         }
         contentInsetAdjustmentBehavior="automatic"
-      />    
-      </SafeAreaView>    
+      />
+    </SafeAreaView>
   );
 }
 
