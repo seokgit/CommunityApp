@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
           fontWeight: '700'
     },
     captionText: {
-        color: 'gray',
+        color: '4C4C4C',
         fontWeight: '500'
     }
 })
