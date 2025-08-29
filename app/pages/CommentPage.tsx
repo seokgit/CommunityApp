@@ -1,10 +1,11 @@
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Comment from '../components/Comment';
 
 function CommentPage() {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>comment page</Text>
+            <Comment profileImageUrl='ddd' name='ddd' comment='ddddd'/>            
         </View>
     );
 }
