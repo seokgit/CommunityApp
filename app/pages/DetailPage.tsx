@@ -1,16 +1,16 @@
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'react-native';
 import ProfileCard from '../components/ProfileCard';
+import { useNavigation } from '@react-navigation/native';
 
 function DetailPage({ route }) {
   const post = route.params.post
-
+  const navigation = useNavigation()
   return (
     <View style={styles.container}>
       {/* <Text>detail page</Text> */}
      <ScrollView>
        <View style={{paddingHorizontal: 16, paddingTop: 20}}>
         <ProfileCard profileImageUrl={post.profileImageUrl} name={post.authorName} date={post.date} subject={post.subject}/>
-
       <Text style={styles.titleText}>
         {post.title}
       </Text>
@@ -21,7 +21,7 @@ function DetailPage({ route }) {
        </View>
      </ScrollView>
      <View style={styles.statsContainer}>      
-      <TouchableOpacity style={styles.comment}> 
+      <TouchableOpacity style={styles.comment} onPress={() => navigation.navigate("Comment")}> 
         <Image source={require('../assets/message.png')} style={{width: 24, height: 24}}/>
         <Text>140</Text>
       </TouchableOpacity>
