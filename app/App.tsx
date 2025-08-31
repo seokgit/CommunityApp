@@ -17,7 +17,6 @@ import SignInPage from './pages/SignInPage.tsx';
 import { useState } from 'react';
 import CommentPage from './pages/CommentPage.tsx';
 
-
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -29,9 +28,8 @@ function App() {
         {isLoggedIn ? (
           <Stack.Navigator>
             <Stack.Screen name="Main" component={MainPage} options={{
-    title: 'Explore',
-    headerLargeTitle: true, 
-    headerShadowVisible: false,
+    title: 'Explore',    
+    headerShadowVisible: false
   }}/>
             <Stack.Screen name="Detail" component={DetailPage} />
             <Stack.Screen name="Write" component={WritePage} />
