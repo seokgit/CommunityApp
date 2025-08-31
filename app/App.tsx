@@ -20,7 +20,7 @@ import CommentPage from './pages/CommentPage.tsx';
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <SafeAreaProvider>
