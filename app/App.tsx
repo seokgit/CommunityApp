@@ -16,11 +16,12 @@ import WritePage from './pages/WritePage.tsx';
 import SignInPage from './pages/SignInPage.tsx';
 import { useState } from 'react';
 import CommentPage from './pages/CommentPage.tsx';
+import SignUpPage from './pages/SignUpPage.tsx';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <SafeAreaProvider>
@@ -39,8 +40,9 @@ function App() {
             }} />
           </Stack.Navigator>
         ) : (
-          <Stack.Navigator screenOptions={{ headerShown: false }}>
+          <Stack.Navigator >
             <Stack.Screen name="SignIn" component={SignInPage} />
+            <Stack.Screen name="SignUp" component={SignUpPage} />
           </Stack.Navigator>
         )}
       </NavigationContainer>
