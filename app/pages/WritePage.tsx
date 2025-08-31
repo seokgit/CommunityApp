@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'blue',    
     height: 50,    
-    marginTop: 20
+    marginTop: 20,    
   }
 })
