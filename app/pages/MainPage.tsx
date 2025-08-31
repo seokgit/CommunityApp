@@ -23,7 +23,7 @@ function MainPage() {
   },[navigation])
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1}}>
       <FlatList        
         data={posts}        
         keyExtractor={(item) => item.id.toString()}
