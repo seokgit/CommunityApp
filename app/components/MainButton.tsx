@@ -9,7 +9,7 @@ type Props = {
 
 function MainButton({ title, onPress, disabled = false }: Props) {
   return (
-<TouchableOpacity style={styles.button}>
+  <TouchableOpacity style={styles.button} onPress={onPress}>
         <Text style={{color: 'white'}}>{title}</Text>
       </TouchableOpacity>
     
