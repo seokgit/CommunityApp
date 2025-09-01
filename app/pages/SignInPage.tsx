@@ -1,19 +1,46 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import TextField from '../components/TextField';
 import MainButton from '../components/MainButton';
 import { useNavigation } from '@react-navigation/native';
+import { useContext, useState } from 'react';
+import auth from '@react-native-firebase/auth';
+import { AuthContext } from '../context/AuthContext';
 
 function SignInPage() {
     const navigation = useNavigation()
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const { login } = useContext(AuthContext)
+
+    const signIn = async () => {
+       try {
+      await auth().signInWithEmailAndPassword(email, password);
+
+      login()
+    } catch (e) {
+        console.log("ERROR: ", e) 
+             Alert.alert(
+                    "Error",
+                    "아이디 또는 비밀번호가 일치하지 않습니다.",
+              [
+                {
+                  text: "닫기"          
+                }             
+              ],
+              { cancelable: false }
+            );     
+    }  
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.label}>Email</Text>
-            <TextField/>
+           <TextField value={email} onChangeText={setEmail}/>
             <View style={{paddingVertical: 10}}/>
             <Text style={styles.label}>Password</Text>
-            <TextField/>
+             <TextField value={password} onChangeText={setPassword}/>
         <View style={{paddingVertical: 20}}/>
-            <MainButton/>
+            <MainButton title='로그인' onPress={signIn}/>
             <View style={{paddingVertical: 20}}/>
             <TouchableOpacity onPress={() => {
                 navigation.navigate("SignUp")
