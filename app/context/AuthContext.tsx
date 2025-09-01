@@ -1,15 +1,22 @@
 import React, { createContext, ReactNode, useState } from 'react';
 import { AuthStatus } from '../types/AuthStatus';
 
+type User = {
+  id: string
+  name: string
+}
+
 interface AuthContextType {  
-  loginStatus: AuthStatus
-  login: () => void;
+  authStatus: AuthStatus  
+  user: User | null
+  login: (user: User) => void;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  loginStatus: AuthStatus.CHECKING,  
-  login: () => {},
+  authStatus: AuthStatus.CHECKING,  
+  user: null,
+  login: (user: User) => {},
   logout: () => {},
 });
 
@@ -18,18 +25,21 @@ interface AuthContextProps {
 }
 
 export const AuthProvider = ({ children }: AuthContextProps) => {    
-    const [loginStatus, setLoginStatus] = useState<AuthStatus>(AuthStatus.CHECKING);
+    const [authStatus, setLoginStatus] = useState<AuthStatus>(AuthStatus.CHECKING);
+    const [user, setUser] = useState<User | null>(null);
     
-    const login = () => {        
+    const login = (user: User) => {        
         setLoginStatus(AuthStatus.LOGGEDIN)
+        setUser(user)
     }
 
     const logout = () => {
         setLoginStatus(AuthStatus.LOGGEDOUT)
+        setUser(null)
     }
 
  return (
-    <AuthContext.Provider value={{  loginStatus, login, logout }}>
+    <AuthContext.Provider value={{  authStatus: authStatus, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
