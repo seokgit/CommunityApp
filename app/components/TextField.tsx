@@ -1,9 +1,9 @@
 import React from "react";
 import { View, StyleSheet, TextInput, TouchableOpacity, Image, Text } from "react-native";
 
-function TextField() {
+function TextField({...props}) {
   return (
-  <TextInput style={styles.textInput}/>
+  <TextInput style={styles.textInput} {...props}/>
   );
 }
 
