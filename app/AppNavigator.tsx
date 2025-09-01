@@ -3,20 +3,32 @@ import MainPage from './pages/MainPage.tsx';
 import DetailPage from './pages/DetailPage.tsx';
 import WritePage from './pages/WritePage.tsx';
 import SignInPage from './pages/SignInPage.tsx';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import CommentPage from './pages/CommentPage.tsx';
 import SignUpPage from './pages/SignUpPage.tsx';
 import { AuthContext } from './context/AuthContext.tsx';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import auth, { getAuth } from '@react-native-firebase/auth';
+import { Text } from 'react-native';
+import { AuthStatus } from './types/AuthStatus.ts';
 
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, loginStatus, login, logout } = useContext(AuthContext);
 
+  useEffect(()=>{
+   const unsubscribe = auth().onAuthStateChanged((user) => {
+      if (user) login()
+      else logout()
+    })
+    return unsubscribe;
+  },[])
+
+ if (loginStatus == AuthStatus.CHECKING) return (<Text>Loading...</Text>)  
   return (
-    <NavigationContainer>
-      {isLoggedIn ? (
+    <NavigationContainer>     
+      { (loginStatus == AuthStatus.LOGGEDIN) ? (
         <Stack.Navigator>
           <Stack.Screen
             name="Main"
@@ -39,6 +51,7 @@ function AppNavigator() {
       )}
     </NavigationContainer>
   );
+
 }
 
 export default AppNavigator

@@ -22,8 +22,7 @@ function MainPage() {
     })
   },[navigation])
 
-  return (
-    <SafeAreaView style={{ flex: 1}}>
+  return (    
       <FlatList        
         data={posts}        
         keyExtractor={(item) => item.id.toString()}
@@ -38,8 +37,7 @@ function MainPage() {
           </TouchableOpacity>
         }
         contentInsetAdjustmentBehavior="automatic"
-      />
-    </SafeAreaView>
+      />    
   );
 }
 
