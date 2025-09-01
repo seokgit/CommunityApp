@@ -1,26 +1,40 @@
 import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import MainButton from '../components/MainButton';
+import { useState } from 'react';
+import TextField from '../components/TextField';
+import firestore from '@react-native-firebase/firestore';
 
 function WritePage() {
+  const [title, setTitle] = useState<string>("")
+  const [subject, setSubject] = useState<string>("")
+  const [content, setContent] = useState<string>("")
+
+  const uploadPost = async () => {
+      try {
+        await firestore()
+        .collection("posts")
+          
+      } catch(e: any) {
+
+      }
+  }
 
   return (
     <KeyboardAvoidingView style={styles.container} behavior='padding'>
       <View style={styles.textContainer}>
       <Text style={styles.label}>Title</Text>
-      <TextInput style={styles.textInput}/>
+       <TextField value={title} onChangeText={setTitle}/>
       </View>
 
       <View style={styles.textContainer}>
         <Text style={styles.label}>Subject</Text>
-      <TextInput style={styles.textInput}/>
+      <TextField value={subject} onChangeText={setSubject}/>
       </View>
 
       <View style={styles.textContainer}>        
-      <TextInput style={{...styles.textInput, height: 300}} multiline={true}/>
+      <TextField value={content} onChangeText={setContent} style={{...styles.textInput, height: 300, marginBottom: 10}} multiline={true}/>
       </View>
-
-      <TouchableOpacity style={styles.button}>
-        <Text style={{color: 'white'}}>Submit</Text>
-      </TouchableOpacity>
+      <MainButton title='글 작성하기' onPress={uploadPost}/>
     </KeyboardAvoidingView>
   );
 }
