@@ -15,11 +15,14 @@ import { AuthStatus } from './types/AuthStatus.ts';
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { isLoggedIn, loginStatus, login, logout } = useContext(AuthContext);
+  const {  authStatus: loginStatus, login, logout } = useContext(AuthContext);
 
   useEffect(()=>{
    const unsubscribe = auth().onAuthStateChanged((user) => {
-      if (user) login()
+      if (user) login({
+        id: user.uid,
+        name: ""
+      })
       else logout()
     })
     return unsubscribe;

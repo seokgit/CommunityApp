@@ -20,7 +20,7 @@ function MainPage() {
        </TouchableOpacity>
       ),      
     })
-  },[navigation])
+  },[navigation])  
 
   return (    
       <FlatList        

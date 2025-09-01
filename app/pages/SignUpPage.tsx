@@ -49,7 +49,10 @@ const uploadProfileImage = async (uid: string, localUri: string): Promise<string
                 nickname: nickname,
                 profileImageUrl: profileImageUrl
             })
-            login();
+            login({
+                id: user.user.uid,
+                name: nickname
+            });
         } catch(e: any) {
             console.log("ERROR: ",e)
               Alert.alert(
