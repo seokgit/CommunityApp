@@ -3,16 +3,27 @@ import MainPage from './pages/MainPage.tsx';
 import DetailPage from './pages/DetailPage.tsx';
 import WritePage from './pages/WritePage.tsx';
 import SignInPage from './pages/SignInPage.tsx';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import CommentPage from './pages/CommentPage.tsx';
 import SignUpPage from './pages/SignUpPage.tsx';
 import { AuthContext } from './context/AuthContext.tsx';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import auth, { getAuth } from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, login, logout } = useContext(AuthContext);
+
+  useEffect(()=>{
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        login()
+      } else {
+        logout()
+      }
+    })
+  },[])
 
   return (
     <NavigationContainer>
