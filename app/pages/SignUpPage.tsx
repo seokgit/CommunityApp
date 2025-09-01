@@ -46,7 +46,7 @@ function SignUpPage() {
             <Text style={styles.label}>Nickname</Text>
             <TextField/>
         <View style={{paddingVertical: 20}}/>
-            <MainButton/>                
+            <MainButton title='회원가입' onPress={signUp}/>                
         </View>
     );
 }

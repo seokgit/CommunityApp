@@ -1,10 +1,16 @@
 import React from "react";
-import { View, StyleSheet, TextInput, TouchableOpacity, Image, Text } from "react-native";
+import { View, StyleSheet, TextInput, TouchableOpacity, GestureResponderEvent, Text } from "react-native";
 
-function MainButton() {
+type Props = {
+  title: string;
+  onPress: (event: GestureResponderEvent) => void;
+  disabled?: boolean;
+};
+
+function MainButton({ title, onPress, disabled = false }: Props) {
   return (
 <TouchableOpacity style={styles.button}>
-        <Text style={{color: 'white'}}>Submit</Text>
+        <Text style={{color: 'white'}}>{title}</Text>
       </TouchableOpacity>
     
   );
