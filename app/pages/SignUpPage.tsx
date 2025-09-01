@@ -2,26 +2,26 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Button, Alert } from '
 import TextField from '../components/TextField';
 import MainButton from '../components/MainButton';
 import { launchImageLibrary } from 'react-native-image-picker';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 // import { createUserWithEmailAndPassword } from '@react-native-firebase/auth';
 import auth, { getAuth } from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../context/AuthContext';
 
 function SignUpPage() {        
-    const navigation = useNavigation();
+    const navigation = useNavigation(); 
     const [photoUri, setPhotoUri] = useState<string | undefined>(undefined)    
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [nickname, setNickname] = useState<string>("")
+    const { login } = useContext(AuthContext)
 
     const showImagePicker = () => {          
         
     launchImageLibrary({}, (res) => {
       const uri = res.assets[0].uri
-    //   const formdata = new FormData()
-    //   formdata.append('file', uri);
     setPhotoUri(uri)      
     })  
 }
@@ -49,7 +49,7 @@ const uploadProfileImage = async (uid: string, localUri: string): Promise<string
                 nickname: nickname,
                 profileImageUrl: profileImageUrl
             })
-            
+            login();
         } catch(e: any) {
             console.log("ERROR: ",e)
               Alert.alert(
@@ -57,8 +57,7 @@ const uploadProfileImage = async (uid: string, localUri: string): Promise<string
             "네트워크 통신 중 문제가 발생했습니다.",
       [
         {
-          text: "아니요",
-          onPress: () => console.log("아니라는데"),
+          text: "닫기"          
         }             
       ],
       { cancelable: false }
