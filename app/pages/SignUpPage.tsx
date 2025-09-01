@@ -3,20 +3,33 @@ import TextField from '../components/TextField';
 import MainButton from '../components/MainButton';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { useState } from 'react';
-
+// import { createUserWithEmailAndPassword } from '@react-native-firebase/auth';
+import auth, { getAuth } from '@react-native-firebase/auth';
 
 
 function SignUpPage() {        
-    const [photoUri, setPhotoUri] = useState<string | undefined>(undefined)
+    const [photoUri, setPhotoUri] = useState<string | undefined>(undefined)    
+    const [email, setEmail] = useState<string>("test@test.com")
+    const [password, setPassword] = useState<string>("123456")
+    const [nickname, setNickname] = useState<string>("")
 
-    const showImagePicker = () => {  
+    const showImagePicker = () => {          
+        
     launchImageLibrary({}, (res) => {
       const uri = res.assets[0].uri
     //   const formdata = new FormData()
     //   formdata.append('file', uri);
     setPhotoUri(uri)      
-    })
+    })  
 }
+
+ const signUp = async () => {    
+        try {            
+            const user = await auth().createUserWithEmailAndPassword(email, password);
+        } catch(e) {
+            console.log("ERROR: ",e)
+        }
+    }
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={showImagePicker}>
@@ -33,8 +46,7 @@ function SignUpPage() {
             <Text style={styles.label}>Nickname</Text>
             <TextField/>
         <View style={{paddingVertical: 20}}/>
-            <MainButton/>
-                        
+            <MainButton/>                
         </View>
     );
 }
