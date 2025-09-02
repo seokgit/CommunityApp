@@ -2,7 +2,6 @@ import { useNavigation } from '@react-navigation/native';
 import { View, FlatList, TouchableOpacity, Text, Image } from 'react-native';
 import Article from '../components/Article';
 import { useEffect, useState } from 'react';
-import firestore from '@react-native-firebase/firestore';
 import { Post } from '../types/post';
 import { fetchPosts } from '../services/postService';
 
@@ -23,8 +22,7 @@ function MainPage() {
   },[navigation])      
 
   useEffect(() => {    
-    (async () => {
-      
+    (async () => {      
      try {
       const response = await fetchPosts()
       setPost(response)
@@ -33,7 +31,7 @@ function MainPage() {
       console.log("ERROR", e)
      }
     })()
-  }, [])
+  }, [posts])
 
   return (    
       <FlatList        
