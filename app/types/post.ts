@@ -1,9 +1,10 @@
 export type Post = {
-  id: number;
+  id: string;
   title: string;
+  subject: string;
   content: string;
   profileImageUrl: string;
   authorName: string;
-  date: string;
-  subject: string;
+  userId: string,
+  createDate: string;  
 }

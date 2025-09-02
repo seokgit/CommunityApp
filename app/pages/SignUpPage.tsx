@@ -23,7 +23,7 @@ function SignUpPage() {
     launchImageLibrary({}, (res) => {
       const uri = res.assets[0].uri
     setPhotoUri(uri)      
-    })  
+    })
 }
 
 const uploadProfileImage = async (uid: string, localUri: string): Promise<string> =>  {
@@ -49,7 +49,10 @@ const uploadProfileImage = async (uid: string, localUri: string): Promise<string
                 nickname: nickname,
                 profileImageUrl: profileImageUrl
             })
-            login();
+            login({
+                id: user.user.uid,
+                name: nickname
+            });
         } catch(e: any) {
             console.log("ERROR: ",e)
               Alert.alert(

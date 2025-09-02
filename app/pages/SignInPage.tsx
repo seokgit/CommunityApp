@@ -14,9 +14,12 @@ function SignInPage() {
 
     const signIn = async () => {
        try {
-      await auth().signInWithEmailAndPassword(email, password);
-
-      login()
+      const user = await auth().signInWithEmailAndPassword(email, password);
+        
+      login({
+        id: user.user.uid,
+        name: ""
+      })
     } catch (e) {
         console.log("ERROR: ", e) 
              Alert.alert(
