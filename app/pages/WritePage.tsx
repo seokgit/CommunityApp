@@ -5,12 +5,14 @@ import TextField from '../components/TextField';
 import { uploadPost } from '../services/postService';
 import { Post } from '../types/post';
 import { AuthContext } from '../context/AuthContext';
+import { useNavigation } from '@react-navigation/native';
 
 function WritePage() {
   const [title, setTitle] = useState<string>("")
   const [subject, setSubject] = useState<string>("")
   const [content, setContent] = useState<string>("")
-  const { user } = useContext(AuthContext)  
+  const { user } = useContext(AuthContext)
+  const navigation = useNavigation()
 
   const handleUploadPost = async () => {
       try {
@@ -24,7 +26,9 @@ function WritePage() {
           userId: user?.id ?? "",
           createDate: new Date().toISOString()
         }
-        await uploadPost(newPost)          
+
+        const post = await uploadPost(newPost)              
+      navigation.replace("Detail", { post })
       } catch(e: any) {        
       }
   }
