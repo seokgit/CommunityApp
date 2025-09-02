@@ -1,21 +1,31 @@
 import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import MainButton from '../components/MainButton';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import TextField from '../components/TextField';
-import firestore from '@react-native-firebase/firestore';
+import { uploadPost } from '../services/postService';
+import { Post } from '../types/post';
+import { AuthContext } from '../context/AuthContext';
 
 function WritePage() {
   const [title, setTitle] = useState<string>("")
   const [subject, setSubject] = useState<string>("")
   const [content, setContent] = useState<string>("")
+  const { user } = useContext(AuthContext)  
 
-  const uploadPost = async () => {
+  const handleUploadPost = async () => {
       try {
-        await firestore()
-        .collection("posts")
-          
-      } catch(e: any) {
-
+        const newPost: Post = {
+          id: "",
+          title: title,
+          subject: subject,
+          content: content,
+          profileImageUrl: "",
+          authorName: user?.name ?? "",
+          userId: user?.id ?? "",
+          createDate: new Date()
+        }
+        await uploadPost(newPost)          
+      } catch(e: any) {        
       }
   }
 
@@ -34,7 +44,7 @@ function WritePage() {
       <View style={styles.textContainer}>        
       <TextField value={content} onChangeText={setContent} style={{...styles.textInput, height: 300, marginBottom: 10}} multiline={true}/>
       </View>
-      <MainButton title='글 작성하기' onPress={uploadPost}/>
+      <MainButton title='글 작성하기' onPress={handleUploadPost}/>
     </KeyboardAvoidingView>
   );
 }
