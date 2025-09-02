@@ -15,7 +15,7 @@ function ProfileCard(props: Props) {
       <View style={styles.content}>
         <View style={styles.textContainer}>
             <Text style={styles.titleText}>{props.name}</Text>
-            <Text style={styles.subTitleText}><Text style={styles.captionText}>Date :</Text> {props.date}</Text>
+            <Text numberOfLines={1} style={styles.subTitleText}><Text style={styles.captionText}>Date :</Text> {props.date}</Text>
         </View>
         <Text  style={styles.subTitleText}><Text style={styles.captionText}>Topic :</Text> {props.subject}</Text>
       </View>

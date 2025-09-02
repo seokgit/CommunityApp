@@ -22,7 +22,7 @@ function WritePage() {
           profileImageUrl: "",
           authorName: user?.name ?? "",
           userId: user?.id ?? "",
-          createDate: new Date()
+          createDate: new Date().toISOString()
         }
         await uploadPost(newPost)          
       } catch(e: any) {        
