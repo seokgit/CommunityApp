@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         fontWeight: '700'
     },
     subTitleText: {
-          fontWeight: '700'
+          fontWeight: '700',
     },
     captionText: {
         color: '4C4C4C',
