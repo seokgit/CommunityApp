@@ -23,7 +23,7 @@ function SignUpPage() {
     launchImageLibrary({}, (res) => {
       const uri = res.assets[0].uri
     setPhotoUri(uri)      
-    })  
+    })
 }
 
 const uploadProfileImage = async (uid: string, localUri: string): Promise<string> =>  {

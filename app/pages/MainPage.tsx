@@ -2,13 +2,13 @@ import { useNavigation } from '@react-navigation/native';
 import { View, FlatList, TouchableOpacity, Text, Image } from 'react-native';
 import Article from '../components/Article';
 import { useEffect, useState } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import postData from '../assets/post.json';
+import firestore from '@react-native-firebase/firestore';
 import { Post } from '../types/post';
+import { fetchPosts } from '../services/postService';
 
 function MainPage() {
   const navigation = useNavigation();
-  const [posts, setPost] = useState<Post[]>(postData);
+  const [posts, setPost] = useState<Post[]>([]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -20,7 +20,20 @@ function MainPage() {
        </TouchableOpacity>
       ),      
     })
-  },[navigation])  
+  },[navigation])      
+
+  useEffect(() => {    
+    (async () => {
+      
+     try {
+      const response = await fetchPosts()
+      setPost(response)
+      console.log("SUCCESS")
+     } catch(e) {
+      console.log("ERROR", e)
+     }
+    })()
+  }, [])
 
   return (    
       <FlatList        

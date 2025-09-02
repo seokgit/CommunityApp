@@ -6,5 +6,5 @@ export type Post = {
   profileImageUrl: string;
   authorName: string;
   userId: string,
-  createDate: Date;  
+  createDate: string;  
 }
