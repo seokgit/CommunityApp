@@ -25,6 +25,15 @@ export const fetchComments = async (postId: string): Promise<CommentEntity[]> =>
         return comments
 }
 
+export const fetchCommentCount = async (postId: string): Promise<number> => {
+            const snapshot = await firestore()
+        .collection("posts")        
+        .doc(postId)
+        .collection("comments")        
+        .get()                   
+    return snapshot.docs.length
+}
+
 export const uploadComment = async (postId: string, comment: CommentDto) => {
        const postsRef = firestore().collection("posts").doc(postId).collection("comments");
         const docRef = postsRef.doc();        

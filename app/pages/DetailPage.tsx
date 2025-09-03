@@ -2,11 +2,13 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import ProfileCard from '../components/ProfileCard';
 import { useNavigation } from '@react-navigation/native';
 import { Post } from '../types/post';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { fetchCommentCount, fetchComments } from '../services/commentService';
 
 function DetailPage({ route }) {
   const post: Post = route.params.post
   const navigation = useNavigation()
+  const [commentCount, setCommentCount] = useState<number>(0)  
 
       useEffect(() => {              
       navigation.setOptions({        
@@ -18,7 +20,20 @@ function DetailPage({ route }) {
          </TouchableOpacity>
         ),    
       })
-    },[navigation])  
+    },[navigation])
+
+    useEffect(() => {
+      loadCommentsCount()
+    }, [])
+
+        const loadCommentsCount = async () => {
+        try {
+            const response = await fetchCommentCount(post.id)     
+            setCommentCount(response)       
+        } catch (e) {
+            console.log("ERROR", e)
+        }
+    }
 
   return (
     <View style={styles.container}>      
@@ -39,7 +54,7 @@ function DetailPage({ route }) {
         postId: post.id
       })}> 
         <Image source={require('../assets/message.png')} style={{width: 24, height: 24}}/>
-        <Text>140</Text>
+        <Text>{commentCount}</Text>
       </TouchableOpacity>
      </View>
     </View>
