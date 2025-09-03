@@ -22,7 +22,9 @@ function DetailPage({ route }) {
        </View>
      </ScrollView>
      <View style={styles.statsContainer}>      
-      <TouchableOpacity style={styles.comment} onPress={() => navigation.navigate("Comment")}> 
+      <TouchableOpacity style={styles.comment} onPress={() => navigation.navigate("Comment", {
+        postId: post.id
+      })}> 
         <Image source={require('../assets/message.png')} style={{width: 24, height: 24}}/>
         <Text>140</Text>
       </TouchableOpacity>
