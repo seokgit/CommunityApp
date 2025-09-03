@@ -18,17 +18,17 @@ function AppNavigator() {
   const {  authStatus: loginStatus, login, logout } = useContext(AuthContext);
 
   useEffect(()=>{
-   const unsubscribe = auth().onAuthStateChanged((user) => {
-      if (user) login({
-        id: user.uid,
-        name: ""
-      })
-      else logout()
-    })
-    return unsubscribe;
+  //  const unsubscribe = auth().onAuthStateChanged((user) => {
+  //     if (user) login({
+  //       id: user.uid,
+  //       name: ""
+  //     })
+  //     else logout()
+  //   })
+  //   return unsubscribe;
   },[])
 
- if (loginStatus == AuthStatus.CHECKING) return (<Text>Loading...</Text>)  
+//  if (loginStatus == AuthStatus.CHECKING) return (<Text>Loading...</Text>)  
   return (
     <NavigationContainer>     
       { (loginStatus == AuthStatus.LOGGEDIN) ? (

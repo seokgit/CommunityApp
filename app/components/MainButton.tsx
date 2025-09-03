@@ -22,8 +22,10 @@ const styles = StyleSheet.create({
     button: {    
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'blue',    
+    backgroundColor: '#e78111',    
+    borderRadius: 10,
     height: 50,        
+    fontWeight: '800',
     alignSelf: 'stretch'
   }
 })
