@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, Image } from 'react-native';
 import TextField from '../components/TextField';
 import MainButton from '../components/MainButton';
 import { useNavigation } from '@react-navigation/native';
@@ -37,6 +37,7 @@ function SignInPage() {
 
     return (
         <View style={styles.container}>
+            <Image source={require('../assets/logoImage.png')} style={styles.logo}/>
             <Text style={styles.label}>이메일</Text>
            <TextField placeholder={"이메일을 입력해주세요."} value={email} onChangeText={setEmail}/>
             <View style={{paddingVertical: 10}}/>
@@ -55,6 +56,12 @@ function SignInPage() {
 }
 
 const styles = StyleSheet.create({
+    logo: {
+    width: 100, 
+    height: 100, 
+    resizeMode: 'contain',
+    marginBottom: 30,
+    },
     container: {
         flex: 1, 
         justifyContent: 'center', 

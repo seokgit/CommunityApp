@@ -8,8 +8,7 @@ import CommentPage from './pages/CommentPage.tsx';
 import SignUpPage from './pages/SignUpPage.tsx';
 import { AuthContext } from './context/AuthContext.tsx';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import auth, { getAuth, signOut } from '@react-native-firebase/auth';
-import { ActivityIndicator, Text } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import { AuthStatus } from './types/AuthStatus.ts';
 import SplashSreen from './pages/SplashScreen.tsx';
 
