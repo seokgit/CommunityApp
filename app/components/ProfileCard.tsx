@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 
 type Props = {
     profileImageUrl: string;
@@ -9,18 +9,29 @@ type Props = {
 }
 
 function ProfileCard(props: Props) {
-  return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={{uri: props.profileImageUrl}}/>
-      <View style={styles.content}>
-        <View style={styles.textContainer}>
-            <Text style={styles.titleText}>{props.name}</Text>
-            <Text numberOfLines={1} style={styles.subTitleText}><Text style={styles.captionText}>Date :</Text> {props.date}</Text>
+    return (
+        <View style={styles.container}>
+            <ImageBackground style={styles.image}
+                source={(require('../assets/user.png'))}
+            >
+                <Image style={styles.image}
+                    source={{ uri: props.profileImageUrl }}
+                    onLoad={() => {
+                        console.log("로드중")
+                    }}
+                    onLoadEnd={() => {
+                        console.log("로드끝남")
+                    }}
+                />
+            </ImageBackground>
+            <View style={styles.content}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.titleText}>{props.name}</Text>
+                </View>
+                <Text style={styles.subTitleText}>{props.subject} {props.date}</Text>
+            </View>
         </View>
-        <Text  style={styles.subTitleText}><Text style={styles.captionText}>Topic :</Text> {props.subject}</Text>
-      </View>
-    </View>
-  );
+    );
 }
 
 export default ProfileCard;
@@ -29,18 +40,19 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",
-        alignSelf: 'stretch',        
+        alignSelf: 'stretch',
+        flex: 1
     },
     image: {
-        width: 48,
-        height: 48,
+        width: 40,
+        height: 40,
         borderRadius: 24
     },
     textContainer: {
-        alignSelf: 'stretch',              
-        justifyContent: 'space-between',    
-        flex: 1,            
-        flexDirection: "row",                
+        alignSelf: 'stretch',
+        justifyContent: 'space-between',
+        flex: 1,
+        flexDirection: "row",
     },
     content: {
         display: "flex",
@@ -48,15 +60,12 @@ const styles = StyleSheet.create({
         marginLeft: 12,
         flex: 1,
     },
-    titleText: {        
-        fontSize: 24,
+    titleText: {
+        fontSize: 18,
         fontWeight: '700'
     },
     subTitleText: {
-          fontWeight: '700',
+        //   fontWeight: '700',
+        color: 'gray'
     },
-    captionText: {
-        color: '4C4C4C',
-        fontWeight: '500'
-    }
 })

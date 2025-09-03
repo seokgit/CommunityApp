@@ -10,9 +10,10 @@ type Props = {
 function CommentInput({ value, onChangeText, onSubmit }: Props) {
   return (
     <View style={styles.container}>
-      <TextInput onChangeText={onChangeText} value={value} style={styles.textField} placeholder="Comment"/>     
-      <TouchableOpacity style={{justifyContent: 'center',alignItems: 'center', borderRadius: 18}} onPress={onSubmit}>
-        <Image style={{width: 24, height: 24}} source={require('../assets/sendComment.png')}/>
+      <TextInput onChangeText={onChangeText} value={value} style={styles.textField} />
+      <TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center', borderRadius: 18 }} onPress={onSubmit} disabled={!(value.length > 0)}>
+        {value ? <Image style={{ width: 24, height: 24 }} source={require(`../assets/sendCommentActive.png`)} /> :
+          <Image style={{ width: 24, height: 24 }} source={require(`../assets/sendComment.png`)} />}
       </TouchableOpacity>
     </View>
   );
@@ -21,16 +22,21 @@ function CommentInput({ value, onChangeText, onSubmit }: Props) {
 export default CommentInput;
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',        
-        alignSelf: 'stretch',   
-        paddingHorizontal: 16,             
-        paddingVertical: 10,
-        gap: 10
-    },
-    textField: {        
-        paddingVertical: 10,
-        flex: 1,
-        borderRadius: 900,                
-    }
+  container: {
+    flexDirection: 'row',
+    alignSelf: 'stretch',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    gap: 10,
+    borderTopColor: '#E2E2E2',
+    borderTopWidth: 1
+  },
+  textField: {
+    paddingVertical: 10,
+    flex: 1,
+    borderRadius: 900,
+    backgroundColor: '#E2E2E2',
+    marginBottom: 5,
+    paddingLeft: 10
+  }
 })

@@ -1,8 +1,8 @@
-import { View, FlatList, KeyboardAvoidingView, NativeModules, Platform } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, NativeModules, Platform, Text } from 'react-native';
 import Comment from '../components/Comment';
 import { useContext, useEffect, useState } from 'react';
 import CommentInput from '../components/CommentInput';
-import { SafeAreaView } from 'react-native-safe-area-context';
+ import { Keyboard } from 'react-native';
 import { CommentEntity } from '../types/comment';
 import { fetchComments, uploadComment } from '../services/commentService';
 import { CommentDto } from '../dto/commentDto';
@@ -51,14 +51,15 @@ function CommentPage({ route }) {
                 await uploadComment(postId, comment)
                 await loadComments()
                 setInputComment("")
+                Keyboard.dismiss()
             } catch (e) {
                 console.log("ERROR", e)
             }        
     }
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding' keyboardVerticalOffset={statusBarHeight}>
-            <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white'}} behavior='padding' keyboardVerticalOffset={statusBarHeight + 44}>            
+                <Text style={{paddingLeft: 16, marginTop: 10, color: 'gray', fontWeight: '700'}}>댓글{comment.length}개</Text>
                 <FlatList
                     style={{ flex: 1 }}
                     data={comment}
@@ -70,8 +71,7 @@ function CommentPage({ route }) {
                         </View>
                     }
                 />
-                <CommentInput value={inputComment} onChangeText={setInputComment} onSubmit={handleSubmit} />
-            </SafeAreaView>
+                <CommentInput value={inputComment} onChangeText={setInputComment} onSubmit={handleSubmit} />            
         </KeyboardAvoidingView>
     );
 }
