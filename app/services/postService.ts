@@ -10,14 +10,15 @@ export const fetchPosts = async (): Promise<Post[]> => {
 
   const posts = await Promise.all(
     snapshot.docs.map(async (doc) => {
-      const post = { ...doc.data() } as Post;
+      const post = { ...doc.data() } as Post;      
       const userData = (await firestore().collection("users").doc(post.userId).get()).data();
-
+      const commentCount = (await doc.ref.collection("comments").get()).docs.length
       return {
         ...post,
         profileImageUrl: userData?.profileImageUrl,
         authorName: userData?.nickname,
-        createDate: formatDate(post.createDate)
+        createDate: formatDate(post.createDate),
+        commentCount: commentCount
       }
     })
   )

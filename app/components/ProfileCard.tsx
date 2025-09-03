@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, ImageBackground } from "react-native";
 
 type Props = {
     profileImageUrl: string;
@@ -11,7 +11,19 @@ type Props = {
 function ProfileCard(props: Props) {
     return (
         <View style={styles.container}>
-            <Image style={styles.image} source={{ uri: props.profileImageUrl }} />
+            <ImageBackground style={styles.image}
+                source={(require('../assets/user.png'))}
+            >
+                <Image style={styles.image}
+                    source={{ uri: props.profileImageUrl }}
+                    onLoad={() => {
+                        console.log("로드중")
+                    }}
+                    onLoadEnd={() => {
+                        console.log("로드끝남")
+                    }}
+                />
+            </ImageBackground>
             <View style={styles.content}>
                 <View style={styles.textContainer}>
                     <Text style={styles.titleText}>{props.name}</Text>
