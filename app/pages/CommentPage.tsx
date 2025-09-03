@@ -1,4 +1,4 @@
-import { View, FlatList, KeyboardAvoidingView, NativeModules, Platform } from 'react-native';
+import { View, FlatList, KeyboardAvoidingView, NativeModules, Platform, Text } from 'react-native';
 import Comment from '../components/Comment';
 import { useContext, useEffect, useState } from 'react';
 import CommentInput from '../components/CommentInput';
@@ -58,6 +58,7 @@ function CommentPage({ route }) {
 
     return (
         <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white'}} behavior='padding' keyboardVerticalOffset={statusBarHeight + 44}>            
+                <Text style={{paddingLeft: 16, marginTop: 10, color: 'gray', fontWeight: '700'}}>댓글{comment.length}개</Text>
                 <FlatList
                     style={{ flex: 1 }}
                     data={comment}

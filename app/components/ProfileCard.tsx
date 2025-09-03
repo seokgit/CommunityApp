@@ -28,7 +28,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",
-        alignSelf: 'stretch',        
+        alignSelf: 'stretch',   
+        flex: 1     
     },
     image: {
         width: 40,

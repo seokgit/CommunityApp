@@ -49,7 +49,8 @@ function AppNavigator() {
             name="Comment"
             component={CommentPage}    
             options={{
-              title: "댓글"
+              title: "댓글",
+              headerShadowVisible: false 
             }}        
           />
         </Stack.Navigator>

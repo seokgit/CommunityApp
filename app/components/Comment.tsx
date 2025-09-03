@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
 import { CommentEntity } from "../types/comment";
+import ProfileCard from "./ProfileCard";
 
 type Props = {    
     comment: CommentEntity
@@ -9,9 +10,8 @@ type Props = {
 function Comment(props: Props) {
   return (
     <View style={styles.container}>
-      <View style={styles.profileContainer}>
-        <Image style={styles.image} source={{uri: props.comment.profileImageUrl}}/>
-        <Text style={styles.userNameText}>{props.comment.userName}</Text>
+      <View style={styles.profileContainer}>    
+        <ProfileCard profileImageUrl={props.comment.profileImageUrl} name={props.comment.userName} date={props.comment.createdDate} subject=""/>
       </View>      
       <Text style={styles.commentText}>{props.comment.content}</Text>
     </View>
@@ -23,7 +23,7 @@ export default Comment;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',        
-        alignSelf: 'stretch',                        
+        alignSelf: 'stretch',                           
     },
     image: {
         width: 36,
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     fontWeight: '600'
    },
     commentText: {
-        paddingTop: 10        
+        paddingTop: 10,
+        paddingLeft: 60         
     }
 })
