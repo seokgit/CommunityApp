@@ -9,8 +9,9 @@ import SignUpPage from './pages/SignUpPage.tsx';
 import { AuthContext } from './context/AuthContext.tsx';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth, { getAuth, signOut } from '@react-native-firebase/auth';
-import { Text } from 'react-native';
+import { ActivityIndicator, Text } from 'react-native';
 import { AuthStatus } from './types/AuthStatus.ts';
+import SplashSreen from './pages/SplashScreen.tsx';
 
 const Stack = createNativeStackNavigator();
 
@@ -41,7 +42,7 @@ function AppNavigator() {
   //   }
   // }
 
- if (loginStatus == AuthStatus.CHECKING) return (<Text>Loading...</Text>)  
+ if (loginStatus == AuthStatus.CHECKING) return (<SplashSreen/>)  
   return (
     <NavigationContainer>     
       { (loginStatus == AuthStatus.LOGGEDIN) ? (
@@ -69,8 +70,14 @@ function AppNavigator() {
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="SignIn" component={SignInPage} />
-          <Stack.Screen name="SignUp" component={SignUpPage} />
+          <Stack.Screen name="SignIn" component={SignInPage}  options={{
+            title: "로그인",
+            headerShown: false
+          }}/>
+          <Stack.Screen name="SignUp" component={SignUpPage} options={{
+            title: "회원가입",
+            headerShadowVisible: false 
+          }}/>
         </Stack.Navigator>
       )}
     </NavigationContainer>
