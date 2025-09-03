@@ -10,7 +10,7 @@ function Article(props: Props) {
     return (
         <View style={styles.container}>
             <Text numberOfLines={2} style={styles.title}>{props.post.title}</Text>
-            <Text numberOfLines={1} style={styles.subject}>{props.post.subject}</Text>
+            <Text numberOfLines={1} style={styles.subject}>{props.post.content}</Text>
             <Text style={styles.locationText}>영천동 · {props.post.createDate}</Text>
         </View>
     );
