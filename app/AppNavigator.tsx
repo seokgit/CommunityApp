@@ -11,6 +11,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import auth from '@react-native-firebase/auth';
 import { AuthStatus } from './types/AuthStatus.ts';
 import SplashSreen from './pages/SplashScreen.tsx';
+import { getAuth, signOut } from '@react-native-firebase/auth';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,19 +28,6 @@ function AppNavigator() {
     })
     return unsubscribe;
   }, [])
-
-  // useEffect(() => {
-  //   handleLogout()
-  // }, [])
-
-  // const handleLogout = async () => {
-  //   try {
-  //    const auth = getAuth();
-  //     await signOut(auth);
-  //   } catch {
-
-  //   }
-  // }
 
   if (loginStatus == AuthStatus.CHECKING) return (<SplashSreen />)
   return (
