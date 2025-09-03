@@ -79,7 +79,7 @@ function SignUpPage() {
             <TextField placeholder={"이메일을 입력해주세요."} value={email} onChangeText={setEmail} />
             <View style={{ paddingVertical: 10 }} />
             <Text style={styles.label}>패스워드</Text>
-            <TextField placeholder={"패스워드를 입력해주세요."} value={password} onChangeText={setPassword} />
+            <TextField placeholder={"패스워드를 입력해주세요."} secureTextEntry={true} value={password} onChangeText={setPassword} />
             <View style={{ paddingVertical: 10 }} />
             <Text style={styles.label}>닉네임</Text>
             <TextField placeholder={"닉네임을 입력해주세요."} value={nickname} onChangeText={setNickname} />
