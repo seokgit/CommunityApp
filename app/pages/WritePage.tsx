@@ -21,9 +21,18 @@ function WritePage() {
        <TouchableOpacity onPress={handleUploadPost} disabled={isDisabled}>
         <Text style={{color: isDisabled ? 'gray' : 'black'}}>완료</Text>
        </TouchableOpacity>
-      ),      
+      ),  
+       headerLeft: () => (        
+       <TouchableOpacity onPress={handleGoBack}>
+        <Image style={{width: 15, height: 15}} source={require('../assets/close.png')}/>
+       </TouchableOpacity>
+      ),    
     })
   },[navigation, title, subject, content])  
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  }
 
   const handleUploadPost = async () => {
       try {
