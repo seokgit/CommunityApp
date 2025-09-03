@@ -57,8 +57,7 @@ function CommentPage({ route }) {
     }
 
     return (
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding' keyboardVerticalOffset={statusBarHeight}>
-            <SafeAreaView style={{ flex: 1 }}>
+        <KeyboardAvoidingView style={{ flex: 1, backgroundColor: 'white'}} behavior='padding' keyboardVerticalOffset={statusBarHeight + 44}>            
                 <FlatList
                     style={{ flex: 1 }}
                     data={comment}
@@ -70,8 +69,7 @@ function CommentPage({ route }) {
                         </View>
                     }
                 />
-                <CommentInput value={inputComment} onChangeText={setInputComment} onSubmit={handleSubmit} />
-            </SafeAreaView>
+                <CommentInput value={inputComment} onChangeText={setInputComment} onSubmit={handleSubmit} />            
         </KeyboardAvoidingView>
     );
 }
