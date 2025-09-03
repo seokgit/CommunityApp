@@ -11,42 +11,42 @@ function MainPage() {
   const [posts, setPost] = useState<Post[]>([]);
 
   useFocusEffect(
-    useCallback(()=> {
-  (async () => {      
-     try {
-      const response = await fetchPosts()
-      setPost(response)            
-     } catch(e) {
-      console.log("ERROR", e)
-     }
-    })()   
-    },[])
+    useCallback(() => {
+      (async () => {
+        try {
+          const response = await fetchPosts()
+          setPost(response)
+        } catch (e) {
+          console.log("ERROR", e)
+        }
+      })()
+    }, [])
   )
 
   const handleNavigation = () => {
-     navigation.navigate("Write")
+    navigation.navigate("Write")
   }
 
-  return (    
-      <>
+  return (
+    <>
       <FlatList
-        data={posts}                
-        contentContainerStyle={{marginTop: 10, backgroundColor: 'white'}}
+        data={posts}
+        contentContainerStyle={{ marginTop: 10, backgroundColor: 'white' }}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) =>
           <TouchableOpacity onPress={() => navigation.navigate("Detail", {
             post: item
           })}>
             <View style={{ paddingVertical: 20, paddingHorizontal: 16 }}>
-              <Article post={item} />              
-            </View>            
+              <Article post={item} />
+            </View>
             <View style={{ backgroundColor: '#E2E2E2', alignSelf: 'stretch', height: 0.8 }} />
           </TouchableOpacity>
         }
         contentInsetAdjustmentBehavior="automatic"
-      />  
-      <WriteButton onPress={handleNavigation}/>
-      </>  
+      />
+      <WriteButton onPress={handleNavigation} />
+    </>
   );
 }
 

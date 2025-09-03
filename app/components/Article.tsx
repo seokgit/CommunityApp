@@ -7,21 +7,21 @@ type Props = {
 }
 
 function Article(props: Props) {
-  return (
-    <View style={styles.container}>    
-    <Text numberOfLines={2} style={styles.title}>{props.post.title}</Text>
-    <Text numberOfLines={1} style={styles.subject}>{props.post.subject}</Text>
-    <Text style={styles.locationText}>영천동 · {props.post.createDate}</Text>
-    </View>
-  );
+    return (
+        <View style={styles.container}>
+            <Text numberOfLines={2} style={styles.title}>{props.post.title}</Text>
+            <Text numberOfLines={1} style={styles.subject}>{props.post.subject}</Text>
+            <Text style={styles.locationText}>영천동 · {props.post.createDate}</Text>
+        </View>
+    );
 }
 
 export default Article;
 
 const styles = StyleSheet.create({
-    container: {        
-        alignSelf: 'stretch',   
-        flexDirection: 'column',            
+    container: {
+        alignSelf: 'stretch',
+        flexDirection: 'column',
         // backgroundColor: 'red'
     },
     title: {
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         marginTop: 7
     },
     locationText: {
-         fontSize: 14,
+        fontSize: 14,
         fontWeight: '500',
         color: 'gray',
         marginTop: 10

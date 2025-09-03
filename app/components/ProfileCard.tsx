@@ -9,17 +9,17 @@ type Props = {
 }
 
 function ProfileCard(props: Props) {
-  return (
-    <View style={styles.container}>
-      <Image style={styles.image} source={{uri: props.profileImageUrl}}/>
-      <View style={styles.content}>
-        <View style={styles.textContainer}>
-            <Text style={styles.titleText}>{props.name}</Text>            
+    return (
+        <View style={styles.container}>
+            <Image style={styles.image} source={{ uri: props.profileImageUrl }} />
+            <View style={styles.content}>
+                <View style={styles.textContainer}>
+                    <Text style={styles.titleText}>{props.name}</Text>
+                </View>
+                <Text style={styles.subTitleText}>{props.subject} {props.date}</Text>
+            </View>
         </View>
-        <Text  style={styles.subTitleText}>{props.subject} {props.date}</Text>
-      </View>
-    </View>
-  );
+    );
 }
 
 export default ProfileCard;
@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: "row",
         alignItems: "center",
-        alignSelf: 'stretch',   
-        flex: 1     
+        alignSelf: 'stretch',
+        flex: 1
     },
     image: {
         width: 40,
@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
         borderRadius: 24
     },
     textContainer: {
-        alignSelf: 'stretch',              
-        justifyContent: 'space-between',    
-        flex: 1,            
-        flexDirection: "row",                
+        alignSelf: 'stretch',
+        justifyContent: 'space-between',
+        flex: 1,
+        flexDirection: "row",
     },
     content: {
         display: "flex",
@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
         marginLeft: 12,
         flex: 1,
     },
-    titleText: {        
+    titleText: {
         fontSize: 18,
         fontWeight: '700'
     },
     subTitleText: {
         //   fontWeight: '700',
         color: 'gray'
-    },   
+    },
 })

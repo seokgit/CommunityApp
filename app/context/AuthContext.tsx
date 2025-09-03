@@ -6,40 +6,40 @@ type User = {
   name: string
 }
 
-interface AuthContextType {  
-  authStatus: AuthStatus  
+interface AuthContextType {
+  authStatus: AuthStatus
   user: User | null
   login: (user: User) => void;
   logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  authStatus: AuthStatus.CHECKING,  
+  authStatus: AuthStatus.CHECKING,
   user: null,
-  login: (user: User) => {},
-  logout: () => {},
+  login: (user: User) => { },
+  logout: () => { },
 });
 
 interface AuthContextProps {
-    children: ReactNode
+  children: ReactNode
 }
 
-export const AuthProvider = ({ children }: AuthContextProps) => {    
-    const [authStatus, setLoginStatus] = useState<AuthStatus>(AuthStatus.CHECKING);
-    const [user, setUser] = useState<User | null>(null);
-    
-    const login = (user: User) => {        
-        setLoginStatus(AuthStatus.LOGGEDIN)
-        setUser(user)
-    }
+export const AuthProvider = ({ children }: AuthContextProps) => {
+  const [authStatus, setLoginStatus] = useState<AuthStatus>(AuthStatus.CHECKING);
+  const [user, setUser] = useState<User | null>(null);
 
-    const logout = () => {
-        setLoginStatus(AuthStatus.LOGGEDOUT)
-        setUser(null)
-    }
+  const login = (user: User) => {
+    setLoginStatus(AuthStatus.LOGGEDIN)
+    setUser(user)
+  }
 
- return (
-    <AuthContext.Provider value={{  authStatus: authStatus, user, login, logout }}>
+  const logout = () => {
+    setLoginStatus(AuthStatus.LOGGEDOUT)
+    setUser(null)
+  }
+
+  return (
+    <AuthContext.Provider value={{ authStatus: authStatus, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

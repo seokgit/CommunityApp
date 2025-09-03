@@ -9,22 +9,22 @@ type Props = {
 
 function MainButton({ title, onPress, disabled = false }: Props) {
   return (
-  <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={{color: 'white'}}>{title}</Text>
-      </TouchableOpacity>
-    
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={{ color: 'white' }}>{title}</Text>
+    </TouchableOpacity>
+
   );
 }
 
 export default MainButton;
 
 const styles = StyleSheet.create({
-    button: {    
+  button: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#e78111',    
+    backgroundColor: '#e78111',
     borderRadius: 10,
-    height: 50,        
+    height: 50,
     fontWeight: '800',
     alignSelf: 'stretch'
   }

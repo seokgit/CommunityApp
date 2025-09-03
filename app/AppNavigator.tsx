@@ -15,10 +15,10 @@ import SplashSreen from './pages/SplashScreen.tsx';
 const Stack = createNativeStackNavigator();
 
 function AppNavigator() {
-  const {  authStatus: loginStatus, login, logout } = useContext(AuthContext);
+  const { authStatus: loginStatus, login, logout } = useContext(AuthContext);
 
-  useEffect(()=>{
-   const unsubscribe = auth().onAuthStateChanged((user) => {
+  useEffect(() => {
+    const unsubscribe = auth().onAuthStateChanged((user) => {
       if (user) login({
         id: user.uid,
         name: ""
@@ -26,7 +26,7 @@ function AppNavigator() {
       else logout()
     })
     return unsubscribe;
-  },[])
+  }, [])
 
   // useEffect(() => {
   //   handleLogout()
@@ -41,10 +41,10 @@ function AppNavigator() {
   //   }
   // }
 
- if (loginStatus == AuthStatus.CHECKING) return (<SplashSreen/>)  
+  if (loginStatus == AuthStatus.CHECKING) return (<SplashSreen />)
   return (
-    <NavigationContainer>     
-      { (loginStatus == AuthStatus.LOGGEDIN) ? (
+    <NavigationContainer>
+      {(loginStatus == AuthStatus.LOGGEDIN) ? (
         <Stack.Navigator>
           <Stack.Screen
             name="Main"
@@ -53,30 +53,30 @@ function AppNavigator() {
           />
           <Stack.Screen name="Detail" component={DetailPage} options={{
             title: "상세 보기"
-          }}/>
+          }} />
           <Stack.Screen name="Write" component={WritePage} options={{
-            presentation: 'fullScreenModal',            
+            presentation: 'fullScreenModal',
             title: "글 작성"
-          }}/>
+          }} />
           <Stack.Screen
             name="Comment"
-            component={CommentPage}    
+            component={CommentPage}
             options={{
               title: "댓글",
-              headerShadowVisible: false 
-            }}        
+              headerShadowVisible: false
+            }}
           />
         </Stack.Navigator>
       ) : (
         <Stack.Navigator>
-          <Stack.Screen name="SignIn" component={SignInPage}  options={{
+          <Stack.Screen name="SignIn" component={SignInPage} options={{
             title: "로그인",
             headerShown: false
-          }}/>
+          }} />
           <Stack.Screen name="SignUp" component={SignUpPage} options={{
             title: "회원가입",
-            headerShadowVisible: false 
-          }}/>
+            headerShadowVisible: false
+          }} />
         </Stack.Navigator>
       )}
     </NavigationContainer>
