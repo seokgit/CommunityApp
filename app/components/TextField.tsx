@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput, TouchableOpacity, Image, Text } from "reac
 
 function TextField({...props}) {
   return (
-  <TextInput style={styles.textInput} {...props}/>
+  <TextInput  style={styles.textInput} {...props}/>
   );
 }
 
@@ -12,7 +12,8 @@ export default TextField;
 const styles = StyleSheet.create({
     textInput: {
     alignSelf: 'stretch',      
-    height: 40,             
-    backgroundColor: '#E6E6E6'
+    height: 40,  
+    borderBottomColor: '#E2E2E2',
+    borderBottomWidth: 1
     }
 })

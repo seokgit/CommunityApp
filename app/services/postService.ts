@@ -13,7 +13,8 @@ export const fetchPosts = async (): Promise<Post[]> => {
             const post = { ...doc.data()} as Post;
             const userData = (await firestore().collection("users").doc(post.userId).get()).data();            
                         
-            return {...post, 
+            return {
+                ...post, 
                 profileImageUrl: userData?.profileImageUrl, 
                 authorName: userData?.nickname,
                 createDate: formatDate(post.createDate)

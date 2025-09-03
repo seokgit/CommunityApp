@@ -13,7 +13,7 @@ function DetailPage({ route }) {
        <View style={{paddingHorizontal: 16, paddingTop: 20}}>
         <ProfileCard profileImageUrl={post.profileImageUrl} name={post.authorName} date={post.createDate} subject={post.subject}/>
       <Text style={styles.titleText}>
-        {post.title}
+       <Text style={{color: '#2A7CE8'}}>Q.</Text> {post.title}
       </Text>
 
       <Text style={styles.contentText}>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'white',        
+    backgroundColor: 'white',      
   },
   titleText: {
     fontSize: 30,

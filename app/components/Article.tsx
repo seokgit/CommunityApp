@@ -9,10 +9,10 @@ type Props = {
 
 function Article(props: Props) {
   return (
-    <View style={styles.container}>
-    <ProfileCard profileImageUrl={props.post.profileImageUrl} name={props.post.authorName} date={props.post.createDate} subject={props.post.subject}/>
-    <Text numberOfLines={2} style={styles.content}>{props.post.content}</Text>
+    <View style={styles.container}>    
+    <Text numberOfLines={2} style={styles.title}>{props.post.title}</Text>
     <Text numberOfLines={1} style={styles.subject}>{props.post.subject}</Text>
+    <Text style={styles.locationText}>영천동 · 2일전</Text>
     </View>
   );
 }
@@ -23,16 +23,23 @@ const styles = StyleSheet.create({
     container: {        
         alignSelf: 'stretch',   
         flexDirection: 'column',            
+        // backgroundColor: 'red'
     },
-    content: {
-        fontSize: 30,
-        fontWeight: '700',
-        marginTop: 20
+    title: {
+        fontSize: 16,
+        fontWeight: '500',
+        marginTop: 10
     },
     subject: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: '500',
-        color: '#4C4C4C',
-        marginTop: 20
+        color: 'gray',
+        marginTop: 7
+    },
+    locationText: {
+         fontSize: 14,
+        fontWeight: '500',
+        color: 'gray',
+        marginTop: 10
     }
 })

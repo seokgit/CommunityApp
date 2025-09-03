@@ -1,6 +1,6 @@
-import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, StyleSheet, KeyboardAvoidingView, TouchableOpacity, Image } from 'react-native';
 import MainButton from '../components/MainButton';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import TextField from '../components/TextField';
 import { uploadPost } from '../services/postService';
 import { Post } from '../types/post';
@@ -13,6 +13,17 @@ function WritePage() {
   const [content, setContent] = useState<string>("")
   const { user } = useContext(AuthContext)
   const navigation = useNavigation()
+
+    useEffect(() => {      
+      const isDisabled = !title || !subject || !content
+    navigation.setOptions({
+      headerRight: () => (        
+       <TouchableOpacity onPress={handleUploadPost} disabled={isDisabled}>
+        <Text style={{color: isDisabled ? 'gray' : 'black'}}>완료</Text>
+       </TouchableOpacity>
+      ),      
+    })
+  },[navigation, title, subject, content])  
 
   const handleUploadPost = async () => {
       try {
@@ -34,21 +45,17 @@ function WritePage() {
   }
 
   return (
-    <KeyboardAvoidingView style={styles.container} behavior='padding'>
-      <View style={styles.textContainer}>
-      <Text style={styles.label}>Title</Text>
-       <TextField value={title} onChangeText={setTitle}/>
+    <KeyboardAvoidingView style={styles.container} behavior='padding'>      
+    {/* 주제 */}
+      <View style={styles.textContainer}>        
+      <TextField placeholder={"주제를 입력해주세요."} value={subject} onChangeText={setSubject}/>
       </View>
-
-      <View style={styles.textContainer}>
-        <Text style={styles.label}>Subject</Text>
-      <TextField value={subject} onChangeText={setSubject}/>
-      </View>
-
+    {/* 재목 */}
+      <TextInput style={styles.titleText} placeholder={"제목을 입력해주세요."} value={title} onChangeText={setTitle}/>
+    {/* 컨텐츠 */}
       <View style={styles.textContainer}>        
       <TextField value={content} onChangeText={setContent} style={{...styles.textInput, height: 300, marginBottom: 10}} multiline={true}/>
-      </View>
-      <MainButton title='글 작성하기' onPress={handleUploadPost}/>
+      </View>      
     </KeyboardAvoidingView>
   );
 }
@@ -68,8 +75,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     height: 40,         
-    marginTop: 10,
-    backgroundColor: '#E6E6E6'
+    marginTop: 10    
   },
   textContainer: {
     paddingTop: 10
@@ -80,5 +86,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',    
     height: 50,    
     marginTop: 20,    
+  },
+  titleText: {
+    fontSize: 20,
+    marginTop: 20,   
   }
 })

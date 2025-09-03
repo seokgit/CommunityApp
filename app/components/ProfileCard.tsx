@@ -14,10 +14,9 @@ function ProfileCard(props: Props) {
       <Image style={styles.image} source={{uri: props.profileImageUrl}}/>
       <View style={styles.content}>
         <View style={styles.textContainer}>
-            <Text style={styles.titleText}>{props.name}</Text>
-            <Text numberOfLines={1} style={styles.subTitleText}><Text style={styles.captionText}>Date :</Text> {props.date}</Text>
+            <Text style={styles.titleText}>{props.name}</Text>            
         </View>
-        <Text  style={styles.subTitleText}><Text style={styles.captionText}>Topic :</Text> {props.subject}</Text>
+        <Text  style={styles.subTitleText}>{props.subject} {props.date}</Text>
       </View>
     </View>
   );
@@ -32,8 +31,8 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',        
     },
     image: {
-        width: 48,
-        height: 48,
+        width: 40,
+        height: 40,
         borderRadius: 24
     },
     textContainer: {
@@ -49,14 +48,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     titleText: {        
-        fontSize: 24,
+        fontSize: 18,
         fontWeight: '700'
     },
     subTitleText: {
-          fontWeight: '700',
-    },
-    captionText: {
-        color: '4C4C4C',
-        fontWeight: '500'
-    }
+        //   fontWeight: '700',
+        color: 'gray'
+    },   
 })

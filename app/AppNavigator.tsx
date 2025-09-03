@@ -36,10 +36,13 @@ function AppNavigator() {
           <Stack.Screen
             name="Main"
             component={MainPage}
-            options={{ title: 'Explore', headerShadowVisible: false }}
+            options={{ title: '동네생활', headerShadowVisible: false }}
           />
           <Stack.Screen name="Detail" component={DetailPage} />
-          <Stack.Screen name="Write" component={WritePage} />
+          <Stack.Screen name="Write" component={WritePage} options={{
+            presentation: 'fullScreenModal',            
+            title: "글 작성"
+          }} />
           <Stack.Screen
             name="Comment"
             component={CommentPage}
