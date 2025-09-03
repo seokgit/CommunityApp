@@ -1,10 +1,12 @@
 import { View, FlatList, KeyboardAvoidingView, NativeModules, Platform } from 'react-native';
 import Comment from '../components/Comment';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CommentInput from '../components/CommentInput';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CommentEntity } from '../types/comment';
-import { fetchComments } from '../services/commentService';
+import { fetchComments, uploadComment } from '../services/commentService';
+import { CommentDto } from '../dto/commentDto';
+import { AuthContext } from '../context/AuthContext';
 
 const { StatusBarManager } = NativeModules;
 
@@ -12,23 +14,47 @@ function CommentPage({ route }) {
     const postId: string = route.params.postId
     const [comment, setComment] = useState<CommentEntity[]>([]);
     const [statusBarHeight, setStatusBarHeight] = useState(0);
+    const [inputComment, setInputComment] = useState<string>("")
+    const { user } = useContext(AuthContext)
 
+    // 키보드 오프셋 조정
     useEffect(() => {
         Platform.OS == 'ios' ? StatusBarManager.getHeight((statusBarFrameData) => {
             setStatusBarHeight(statusBarFrameData.height)
         }) : null
     }, []);
 
+    // 처음화면 진입 시 코멘트 불러오기
     useEffect(() => {
-         (async () => {      
-             try {
-              const response = await fetchComments(postId)
-              setComment(response)            
-             } catch(e) {
-              console.log("ERROR", e)
-             }
-            })()  
-    },[])
+        loadComments()
+    }, [])
+
+    // 댓글 불러오기
+    const loadComments = async () => {
+        try {
+            const response = await fetchComments(postId)
+            setComment(response)
+        } catch (e) {
+            console.log("ERROR", e)
+        }
+    }
+
+    // 댓글 전송
+    const handleSubmit = async () => {        
+            try {
+                const comment: CommentDto = {
+                    id: "",
+                    content: inputComment,
+                    createdDate: new Date().toISOString(),
+                    userId: user?.id ?? ""
+                }
+                await uploadComment(postId, comment)
+                await loadComments()
+                setInputComment("")
+            } catch (e) {
+                console.log("ERROR", e)
+            }        
+    }
 
     return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding' keyboardVerticalOffset={statusBarHeight}>
@@ -44,7 +70,7 @@ function CommentPage({ route }) {
                         </View>
                     }
                 />
-                <CommentInput />
+                <CommentInput value={inputComment} onChangeText={setInputComment} onSubmit={handleSubmit} />
             </SafeAreaView>
         </KeyboardAvoidingView>
     );
