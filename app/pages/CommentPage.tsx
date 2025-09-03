@@ -2,7 +2,7 @@ import { View, FlatList, KeyboardAvoidingView, NativeModules, Platform, Text } f
 import Comment from '../components/Comment';
 import { useContext, useEffect, useState } from 'react';
 import CommentInput from '../components/CommentInput';
-import { SafeAreaView } from 'react-native-safe-area-context';
+ import { Keyboard } from 'react-native';
 import { CommentEntity } from '../types/comment';
 import { fetchComments, uploadComment } from '../services/commentService';
 import { CommentDto } from '../dto/commentDto';
@@ -51,6 +51,7 @@ function CommentPage({ route }) {
                 await uploadComment(postId, comment)
                 await loadComments()
                 setInputComment("")
+                Keyboard.dismiss()
             } catch (e) {
                 console.log("ERROR", e)
             }        

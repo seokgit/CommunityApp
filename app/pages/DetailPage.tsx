@@ -2,10 +2,23 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image } from 'rea
 import ProfileCard from '../components/ProfileCard';
 import { useNavigation } from '@react-navigation/native';
 import { Post } from '../types/post';
+import { useEffect } from 'react';
 
 function DetailPage({ route }) {
   const post: Post = route.params.post
   const navigation = useNavigation()
+
+      useEffect(() => {              
+      navigation.setOptions({        
+         headerLeft: () => (        
+         <TouchableOpacity onPress={() => {
+          navigation.goBack();
+         }} >
+          <Image style={{width: 20, height: 20}} source={require('../assets/back.png')}/>
+         </TouchableOpacity>
+        ),    
+      })
+    },[navigation])  
 
   return (
     <View style={styles.container}>      

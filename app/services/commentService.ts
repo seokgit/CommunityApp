@@ -14,8 +14,7 @@ export const fetchComments = async (postId: string): Promise<CommentEntity[]> =>
         const comments = await Promise.all(
             snapshot.docs.map(async (doc) => {
                 const comment = {...doc.data()} as CommentDto
-                const userData = (await firestore().collection("users").doc(comment.userId).get()).data();            
-                console.log(userData)
+                const userData = (await firestore().collection("users").doc(comment.userId).get()).data();                            
                 return {
                     ...comment,             
                      userName: userData?.nickname,
