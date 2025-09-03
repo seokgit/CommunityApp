@@ -1,11 +1,17 @@
 import React from "react";
 import { View, StyleSheet, TextInput, TouchableOpacity, Image } from "react-native";
 
-function CommentInput() {
+type Props = {
+  value: string;
+  onChangeText: (text: string) => void;
+  onSubmit: () => void;
+};
+
+function CommentInput({ value, onChangeText, onSubmit }: Props) {
   return (
     <View style={styles.container}>
-      <TextInput style={styles.textField} placeholder="Comment"/>     
-      <TouchableOpacity style={{justifyContent: 'center',alignItems: 'center', borderRadius: 18}}>
+      <TextInput onChangeText={onChangeText} value={value} style={styles.textField} placeholder="Comment"/>     
+      <TouchableOpacity style={{justifyContent: 'center',alignItems: 'center', borderRadius: 18}} onPress={onSubmit}>
         <Image style={{width: 24, height: 24}} source={require('../assets/sendComment.png')}/>
       </TouchableOpacity>
     </View>

@@ -1,13 +1,13 @@
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 import { View, FlatList, TouchableOpacity, Text, Image } from 'react-native';
 import Article from '../components/Article';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Post } from '../types/post';
 import { fetchPosts } from '../services/postService';
 
 function MainPage() {
   const navigation = useNavigation();
-  const [posts, setPost] = useState<Post[]>([]);
+  const [posts, setPost] = useState<Post[]>([]);  
 
   useEffect(() => {
     navigation.setOptions({
@@ -21,17 +21,18 @@ function MainPage() {
     })
   },[navigation])      
 
-  useEffect(() => {    
-    (async () => {      
+  useFocusEffect(
+    useCallback(()=> {
+  (async () => {      
      try {
       const response = await fetchPosts()
-      setPost(response)
-      console.log("SUCCESS")
+      setPost(response)            
      } catch(e) {
       console.log("ERROR", e)
      }
-    })()
-  }, [posts])
+    })()   
+    },[])
+  )
 
   return (    
       <FlatList        

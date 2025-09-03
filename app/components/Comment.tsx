@@ -1,20 +1,19 @@
 import React from "react";
 import { View, Text, Image, StyleSheet } from "react-native";
+import { CommentEntity } from "../types/comment";
 
-type Props = {
-    profileImageUrl: string;
-    name: string;
-    comment: string;
+type Props = {    
+    comment: CommentEntity
 }
 
 function Comment(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-        <Image style={styles.image} source={{uri: props.profileImageUrl}}/>
-        <Text style={styles.userNameText}>{props.name}</Text>
+        <Image style={styles.image} source={{uri: props.comment.profileImageUrl}}/>
+        <Text style={styles.userNameText}>{props.comment.userName}</Text>
       </View>      
-      <Text style={styles.commentText}>{props.comment}</Text>
+      <Text style={styles.commentText}>{props.comment.content}</Text>
     </View>
   );
 }
