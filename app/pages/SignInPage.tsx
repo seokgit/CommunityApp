@@ -37,11 +37,11 @@ function SignInPage() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>Email</Text>
-           <TextField value={email} onChangeText={setEmail}/>
+            <Text style={styles.label}>이메일</Text>
+           <TextField placeholder={"이메일을 입력해주세요."} value={email} onChangeText={setEmail}/>
             <View style={{paddingVertical: 10}}/>
-            <Text style={styles.label}>Password</Text>
-             <TextField value={password} onChangeText={setPassword}/>
+            <Text style={styles.label}>패스워드</Text>
+             <TextField placeholder={"비밀번호를 입력해주세요."} value={password} onChangeText={setPassword}/>
         <View style={{paddingVertical: 20}}/>
             <MainButton title='로그인' onPress={signIn}/>
             <View style={{paddingVertical: 20}}/>
@@ -59,7 +59,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center',
-        paddingHorizontal: 16
+        paddingHorizontal: 16,
+        backgroundColor: 'white'
     },
     label: {
         alignSelf: 'stretch',        

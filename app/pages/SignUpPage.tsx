@@ -75,14 +75,14 @@ const uploadProfileImage = async (uid: string, localUri: string): Promise<string
                  <Image source={require('../assets/user.png')} style={styles.profileImage}/>}                
             </TouchableOpacity>                            
             
-            <Text style={styles.label}>Email</Text>
-            <TextField value={email} onChangeText={setEmail}/>
+            <Text style={styles.label}>이메일</Text>
+            <TextField placeholder={"이메일을 입력해주세요."} value={email} onChangeText={setEmail}/>
             <View style={{paddingVertical: 10}}/>
-            <Text style={styles.label}>Password</Text>
-            <TextField value={password} onChangeText={setPassword}/>
+            <Text style={styles.label}>패스워드</Text>
+            <TextField placeholder={"패스워드를 입력해주세요."} value={password} onChangeText={setPassword}/>
             <View style={{paddingVertical: 10}}/>
-            <Text style={styles.label}>Nickname</Text>
-            <TextField value={nickname} onChangeText={setNickname}/>
+            <Text style={styles.label}>닉네임</Text>
+            <TextField placeholder={"닉네임을 입력해주세요."} value={nickname} onChangeText={setNickname}/>
         <View style={{paddingVertical: 20}}/>
             <MainButton title='회원가입' onPress={signUp}/>                
         </View>
@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
         flex: 1, 
         justifyContent: 'center', 
         alignItems: 'center',
-        paddingHorizontal: 16
+        paddingHorizontal: 16, 
+        backgroundColor: 'white'
     },
     label: {
         alignSelf: 'stretch',        

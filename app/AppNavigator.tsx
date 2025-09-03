@@ -8,7 +8,7 @@ import CommentPage from './pages/CommentPage.tsx';
 import SignUpPage from './pages/SignUpPage.tsx';
 import { AuthContext } from './context/AuthContext.tsx';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import auth, { getAuth } from '@react-native-firebase/auth';
+import auth, { getAuth, signOut } from '@react-native-firebase/auth';
 import { Text } from 'react-native';
 import { AuthStatus } from './types/AuthStatus.ts';
 
@@ -18,17 +18,30 @@ function AppNavigator() {
   const {  authStatus: loginStatus, login, logout } = useContext(AuthContext);
 
   useEffect(()=>{
-  //  const unsubscribe = auth().onAuthStateChanged((user) => {
-  //     if (user) login({
-  //       id: user.uid,
-  //       name: ""
-  //     })
-  //     else logout()
-  //   })
-  //   return unsubscribe;
+   const unsubscribe = auth().onAuthStateChanged((user) => {
+      if (user) login({
+        id: user.uid,
+        name: ""
+      })
+      else logout()
+    })
+    return unsubscribe;
   },[])
 
-//  if (loginStatus == AuthStatus.CHECKING) return (<Text>Loading...</Text>)  
+  // useEffect(() => {
+  //   handleLogout()
+  // }, [])
+
+  // const handleLogout = async () => {
+  //   try {
+  //    const auth = getAuth();
+  //     await signOut(auth);
+  //   } catch {
+
+  //   }
+  // }
+
+ if (loginStatus == AuthStatus.CHECKING) return (<Text>Loading...</Text>)  
   return (
     <NavigationContainer>     
       { (loginStatus == AuthStatus.LOGGEDIN) ? (
