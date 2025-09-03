@@ -3,39 +3,14 @@ import Comment from '../components/Comment';
 import { useEffect, useState } from 'react';
 import CommentInput from '../components/CommentInput';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-type CommentType = {
-    id: number;
-    profileImageUrl: string;
-    name: string;
-    comment: string;
-}
-
-const comments: CommentType[] = [
-    {
-        id: 0,
-        profileImageUrl: '',
-        name: 'sdfsdf',
-        comment: 'sdfsfd'
-    },
-    {
-        id: 1,
-        profileImageUrl: '',
-        name: 'sdfsdf',
-        comment: 'sdfsfd'
-    },
-    {
-        id: 2,
-        profileImageUrl: '',
-        name: 'sdfsdf',
-        comment: 'sdfsfd'
-    },
-]
+import { CommentEntity } from '../types/comment';
+import { fetchComments } from '../services/commentService';
 
 const { StatusBarManager } = NativeModules;
 
-function CommentPage() {
-    const [comment, setComment] = useState<CommentType[]>(comments);
+function CommentPage({ route }) {
+    const postId: string = route.params.postId
+    const [comment, setComment] = useState<CommentEntity[]>([]);
     const [statusBarHeight, setStatusBarHeight] = useState(0);
 
     useEffect(() => {
@@ -43,18 +18,29 @@ function CommentPage() {
             setStatusBarHeight(statusBarFrameData.height)
         }) : null
     }, []);
-    return (
 
+    useEffect(() => {
+         (async () => {      
+             try {
+              const response = await fetchComments(postId)
+              setComment(response)            
+             } catch(e) {
+              console.log("ERROR", e)
+             }
+            })()  
+    },[])
+
+    return (
         <KeyboardAvoidingView style={{ flex: 1 }} behavior='padding' keyboardVerticalOffset={statusBarHeight}>
             <SafeAreaView style={{ flex: 1 }}>
                 <FlatList
                     style={{ flex: 1 }}
                     data={comment}
-                    keyExtractor={(item) => item.id.toString()}
+                    keyExtractor={(item) => item.id}
                     contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 20 }}
-                    renderItem={() =>
+                    renderItem={(item) =>
                         <View style={{ paddingVertical: 10 }}>
-                            <Comment profileImageUrl='ddd' name='ddd' comment='ddddd' />
+                            <Comment comment={item.item} />
                         </View>
                     }
                 />
