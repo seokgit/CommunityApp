@@ -7,4 +7,5 @@ export type Post = {
   authorName: string;
   userId: string,
   createDate: string;
+  commentCount: number
 }
