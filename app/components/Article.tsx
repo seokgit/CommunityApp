@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet } from "react-native";
-import ProfileCard from "./ProfileCard";
+import { View, Text, StyleSheet } from "react-native";
 import { Post } from "../types/post";
 
 type Props = {
@@ -12,7 +11,7 @@ function Article(props: Props) {
     <View style={styles.container}>    
     <Text numberOfLines={2} style={styles.title}>{props.post.title}</Text>
     <Text numberOfLines={1} style={styles.subject}>{props.post.subject}</Text>
-    <Text style={styles.locationText}>영천동 · 2일전</Text>
+    <Text style={styles.locationText}>영천동 · {props.post.createDate}</Text>
     </View>
   );
 }
